@@ -36,11 +36,11 @@ WORKDIR /application
 # Copy Requirements into container
 COPY ./TelegramBot/requirements.txt .
 
-# Install python libraries
-RUN pip3 install -r ./requirementes.txt
-
 # Copy bot.py into container
-COPY ./TelegramBot/*.py /application/
+COPY ./TelegramBot/*.py ./
+
+# Install python libraries
+RUN pip3 install -r ./requirements.txt
 
 # Run BOT
 CMD python3 ./bot.py $TOKEN $WEB_HOOK $PORT $DOMAIN

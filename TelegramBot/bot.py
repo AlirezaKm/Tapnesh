@@ -5,7 +5,7 @@ from telegram.ext import (
     ConversationHandler,
     CommandHandler
 )
-from TelegramBot.handlers import (
+from handlers import (
     photo_handler,
     GET_QUALITY,
     cancel,
