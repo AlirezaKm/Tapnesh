@@ -1,6 +1,70 @@
-# Tapnesh
-Tapnesh will optimize your images in parallel easily and efficiently!
+# Tapnesh Bot
+Tapnesh Bot will optimize your images in parallel easily and efficiently! 
 Tapnesh is only a wrapper to optimize images using `jpegoptim` for jpe?g and `pngquant` for png files in parallel using `parallel` package.
+
+🤖 is available at [🔗 here](https://t.me/tapneshbot)
+
+
+Docker
+---
+1. We need to build an image from our content:
+`docker build -t tapnesh .`
+
+2. Run a container from created image:
+```bash
+docker run -itd \
+    -e TOKEN="<TELEGRAM_TOKEN>" \
+    -e WEB_HOOK="<0 or 1>" \
+    -e PORT="<PORT>" \
+    -e DOMAIN="<WEB_HOOK_DOMAIN>" \
+    tapnesh
+```
+
+3. Now you can communicate with your bot 🙂.
+
+Heroku
+---
+In order to use this container in the [Heroku](https://heroku.com) follow the below steps:
+
+1. Change the `stack` of the your application in the heroku to `container` with the following command:
+
+```bash
+heroku stack:set container -a <APP_NAME>
+```
+
+2. Set your variables in the environment at the heroku dashboard in the settings tab of your application:
+```
+TOKEN=<TOKEN>
+WEB_HOOK=1
+DOMAIN=https://<your-application-name>.herokuapp.com/
+```
+
+**NOTE**: the `PORT` variable will be selected by heroku.
+
+2. Create a `heroku.yml` file and paste the below content into it:
+
+```yaml
+build:
+  docker:
+    web: Dockerfile
+```
+
+3. Add, Commit and push new file to the heroku.
+```bash
+# add files to git stage
+git add -A .
+
+# commit your changes
+git commit -am 'heroku.yml added.'
+
+# push to heroku master branch
+git push heroku master
+```
+
+*NOTE 1*: if you want to use polling mode (set `WEB_HOOK=0` in the environment) for your telegram bot you need to replace `build.docker.web` section with `build.docker.worker` in `heroku.yaml` file.
+
+*NOTE 2*: Don't forget to enable the worker (or web) in the heroku dashboard.
+
 
 Installation
 ===

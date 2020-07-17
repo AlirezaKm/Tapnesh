@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # This is a rather minimal example Argbash potential
 # Example taken from http://argbash.readthedocs.io/en/stable/example.html
